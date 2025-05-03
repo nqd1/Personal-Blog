@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { MotionDiv } from '@/components/animations/motion-provider';
+import { FaFacebook, FaGithub, FaLinkedin } from 'react-icons/fa';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -76,14 +77,17 @@ export function Footer() {
         <MotionDiv variant="fadeInUp" delay={0.4} className="mt-12 pt-6 border-t text-sm text-muted-foreground flex flex-col md:flex-row justify-between gap-4">
           <p>© {currentYear} NqdBlog. All rights reserved.</p>
           <div className="flex gap-4">
-            <Link href="" className="hover:text-primary transition-colors">
-              Twitter
+            <Link href="https://www.facebook.com/nqd1445" className="hover:text-primary transition-colors">
+              <FaFacebook style={{ fontSize: '1.5em' }} />
+              <span className="sr-only">Facebook</span>
             </Link>
             <Link href="https://github.com/nqd1" target="_blank" className="hover:text-primary transition-colors">
-              GitHub
+              <FaGithub style={{ fontSize: '1.5em' }} />
+              <span className="sr-only">GitHub</span>
             </Link>
             <Link href="#" className="hover:text-primary transition-colors">
-              LinkedIn
+              <FaLinkedin style={{ fontSize: '1.5em' }} />
+              <span className="sr-only">LinkedIn</span>
             </Link>
           </div>
         </MotionDiv>

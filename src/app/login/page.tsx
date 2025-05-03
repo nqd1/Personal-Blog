@@ -29,16 +29,19 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
-      // For demo, we're not actually authenticating
-      // Just simulate a delay and redirect to admin dashboard
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Validate credentials against the database via API call
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      const data = await response.json();
 
-      // In a real app, you would verify credentials server-side
-      if (formData.email && formData.password) {
+      if (response.ok && data.success) {
         toast.success('Logged in successfully!');
         router.push('/admin/dashboard');
       } else {
-        toast.error('Please enter both email and password');
+        toast.error(data.message || 'Invalid email or password');
       }
     } catch (error) {
       console.error('Login error:', error);

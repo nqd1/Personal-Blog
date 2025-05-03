@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title: "Nqd Blog - A platform to share my learning journey",
   description: "A platform to document and share my learning experiences.",
   icons: {
-    icon: "/naz.png",
+    icon: "/tht.png",
   },
 };
 

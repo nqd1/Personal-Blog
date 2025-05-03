@@ -1,0 +1,25 @@
+[images]
+  remote_images = [
+    "https://source.unsplash.com/.*",
+    "https://images.unsplash.com/.*",
+    "https://ext.same-assets.com/.*",
+    "https://ugc.same-assets.com/.*",
+    "https://placehold.co/.*",
+    "https://picsum.photos/.*",
+    "https://loremflickr.com/.*",
+    "https://placekitten.com/.*",
+    "https://via.placeholder.com/.*",
+    "https://avatars.githubusercontent.com/.*",
+    "https://cloudflare-ipfs.com/.*",
+    "https://i.pravatar.cc/.*"
+  ]
+
+[build]
+  command = "prisma generate && prisma db push && next build"
+  publish = ".next"
+
+[build.environment]
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

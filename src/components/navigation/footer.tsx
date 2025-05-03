@@ -1,0 +1,93 @@
+'use client';
+
+import Link from 'next/link';
+import { MotionDiv } from '@/components/animations/motion-provider';
+
+export function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="border-t bg-muted/40">
+      <div className="container py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <MotionDiv variant="fadeInUp" className="space-y-4">
+            <h3 className="font-semibold text-lg">NqdBlog</h3>
+            <p className="text-muted-foreground text-sm max-w-xs">
+              A platform to upload my learning journey and share my knowledge with the world.
+              <br />
+            </p>
+          </MotionDiv>
+
+          <MotionDiv variant="fadeInUp" delay={0.1} className="space-y-4">
+            <h3 className="font-semibold">Navigation</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="text-muted-foreground hover:text-primary transition-colors">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">
+                  About
+                </Link>
+              </li>
+            </ul>
+          </MotionDiv>
+
+          <MotionDiv variant="fadeInUp" delay={0.2} className="space-y-4">
+            <h3 className="font-semibold">Legal</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/privacy" className="text-muted-foreground hover:text-primary transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms" className="text-muted-foreground hover:text-primary transition-colors">
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link href="/cookies" className="text-muted-foreground hover:text-primary transition-colors">
+                  Cookie Policy
+                </Link>
+              </li>
+            </ul>
+          </MotionDiv>
+
+          <MotionDiv variant="fadeInUp" delay={0.3} className="space-y-4">
+            <h3 className="font-semibold">Contact</h3>
+            <ul className="space-y-2 text-sm">
+              <li className="text-muted-foreground">
+                Email: nqd001205@gmail.com
+              </li>
+              <li className="text-muted-foreground">
+                Location: Hanoi, Vietnam
+              </li>
+            </ul>
+          </MotionDiv>
+        </div>
+
+        <MotionDiv variant="fadeInUp" delay={0.4} className="mt-12 pt-6 border-t text-sm text-muted-foreground flex flex-col md:flex-row justify-between gap-4">
+          <p>© {currentYear} NqdBlog. All rights reserved.</p>
+          <div className="flex gap-4">
+            <Link href="" className="hover:text-primary transition-colors">
+              Twitter
+            </Link>
+            <Link href="https://github.com/nqd1" target="_blank" className="hover:text-primary transition-colors">
+              GitHub
+            </Link>
+            <Link href="#" className="hover:text-primary transition-colors">
+              LinkedIn
+            </Link>
+          </div>
+        </MotionDiv>
+      </div>
+    </footer>
+  );
+}

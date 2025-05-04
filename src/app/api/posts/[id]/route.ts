@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/db';
+import { marked } from 'marked';
 
 // GET a specific post
 export async function GET(
@@ -12,7 +13,7 @@ export async function GET(
         id: params.id
       },
       include: {
-        author: {
+        user: {
           select: {
             id: true,
             name: true,
@@ -27,6 +28,13 @@ export async function GET(
         { error: 'Post not found' },
         { status: 404 }
       );
+    }
+
+    // Format the content if query param "format" is "html"
+    const { searchParams } = new URL(request.url);
+    const format = searchParams.get('format');
+    if (post.content && format === 'html') {
+      post.content = await marked(post.content);
     }
 
     return NextResponse.json(post);

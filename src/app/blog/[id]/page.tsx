@@ -20,7 +20,7 @@ type Post = {
   createdAt: string;
   updatedAt: string;
   published: boolean;
-  author: {
+  user: { // changed from author
     id: string;
     name: string;
     image?: string | null;
@@ -150,11 +150,11 @@ export default function PostDetailPage() {
 
           <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
             <div className="flex items-center gap-2">
-              {post.author.image ? (
+              {post.user.image ? (
                 <div className="relative h-6 w-6 rounded-full overflow-hidden">
                   <Image
-                    src={post.author.image}
-                    alt={post.author.name}
+                    src={post.user.image}
+                    alt={post.user.name}
                     fill
                     className="object-cover"
                   />
@@ -164,7 +164,7 @@ export default function PostDetailPage() {
                   <UserIcon className="h-3 w-3" />
                 </div>
               )}
-              <span>{post.author.name}</span>
+              <span>{post.user.name}</span>
             </div>
 
             <div className="flex items-center gap-1">

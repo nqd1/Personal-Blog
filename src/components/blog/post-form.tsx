@@ -73,7 +73,15 @@ export function PostForm({ initialData, mode, onSuccess }: PostFormProps) {
       });
 
       if (!response.ok) {
-        throw new Error(`Failed to ${isEditing ? 'update' : 'create'} post`);
+        let errorData;
+        try {
+          errorData = await response.json();
+        } catch (err) {
+          errorData = { error: await response.text() };
+        }
+        console.error("Error creating/updating post:", errorData);
+        const errorMessage = errorData?.error || 'Unknown error';
+        throw new Error(`Failed to ${isEditing ? 'update' : 'create'} post: ${errorMessage}`);
       }
 
       const data = await response.json();

@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { MotionDiv } from '@/components/animations/motion-provider';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { useSession, signOut } from 'next-auth/react';
 
 const navItems = [
   { name: 'Home', path: '/' },
@@ -19,10 +20,10 @@ const adminItems = [
 ];
 
 export function Header() {
+  const { data: session, status } = useSession();
+  const isLoggedIn = status === 'authenticated';
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const isAdminPage = pathname?.startsWith('/admin');
-  const isLoggedIn = isAdminPage;
 
   const [darkMode, setDarkMode] = useState(false);
 
@@ -98,6 +99,9 @@ export function Header() {
                   </Link>
                 </MotionDiv>
               ))}
+              <Link href="/account" className="transition-colors hover:text-primary">
+                Account Details
+              </Link>
             </>
           )}
 
@@ -106,9 +110,12 @@ export function Header() {
             delay={(navItems.length + (isLoggedIn ? adminItems.length : 0)) * 0.1}
           >
             {isLoggedIn ? (
-              <Button variant="outline" size="sm" asChild>
-                <Link href="/logout">Logout</Link>
-              </Button>
+              <button
+                onClick={() => signOut({ callbackUrl: '/' })}
+                className="transition-colors hover:text-primary"
+              >
+                Logout
+              </button>
             ) : (
               <Button variant="default" size="sm" asChild>
                 <Link href="/login">Login</Link>
@@ -176,6 +183,13 @@ export function Header() {
                     </Link>
                   </MotionDiv>
                 ))}
+                <Link
+                  href="/account"
+                  className="transition-colors block py-2 hover:text-primary"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Account Details
+                </Link>
               </>
             )}
 
@@ -185,9 +199,15 @@ export function Header() {
               className="pt-2"
             >
               {isLoggedIn ? (
-                <Button variant="outline" size="sm" className="w-full" asChild>
-                  <Link href="/logout" onClick={() => setMobileMenuOpen(false)}>Logout</Link>
-                </Button>
+                <button
+                  onClick={() => {
+                    signOut({ callbackUrl: '/' });
+                    setMobileMenuOpen(false);
+                  }}
+                  className="transition-colors hover:text-primary w-full text-left"
+                >
+                  Logout
+                </button>
               ) : (
                 <Button variant="default" size="sm" className="w-full" asChild>
                   <Link href="/login" onClick={() => setMobileMenuOpen(false)}>Login</Link>

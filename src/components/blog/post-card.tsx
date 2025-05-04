@@ -14,7 +14,7 @@ type PostCardProps = {
     excerpt?: string | null;
     coverImage?: string | null;
     createdAt: Date | string;
-    author: {
+    user: {
       id: string;
       name: string;
       image?: string | null;
@@ -66,11 +66,11 @@ export function PostCard({ post, variant = 'fadeInUp', delay = 0, isCompact = fa
 
           <CardFooter className={`flex justify-between items-center text-xs text-muted-foreground ${isCompact ? 'px-4 py-3' : 'px-5 py-4'}`}>
             <div className="flex items-center gap-2">
-              {post.author.image ? (
+              {post.user.image ? (
                 <div className="relative h-6 w-6 rounded-full overflow-hidden">
                   <Image
-                    src={post.author.image}
-                    alt={post.author.name}
+                    src={post.user.image}
+                    alt={post.user.name}
                     fill
                     className="object-cover"
                   />
@@ -80,7 +80,7 @@ export function PostCard({ post, variant = 'fadeInUp', delay = 0, isCompact = fa
                   <UserIcon className="h-3 w-3" />
                 </div>
               )}
-              <span>{post.author.name}</span>
+              <span>{post.user.name}</span>
             </div>
 
             <div className="flex items-center gap-1">

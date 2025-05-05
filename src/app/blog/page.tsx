@@ -15,6 +15,7 @@ type Post = {
   excerpt?: string | null;
   coverImage?: string | null;
   createdAt: string;
+  published: boolean; 
   author: {
     id: string;
     name: string;
@@ -49,13 +50,14 @@ export default function BlogPage() {
     fetchPosts();
   }, []);
 
-  // Filter posts based on search query
+  // Filter posts based on search query and published status
   const filteredPosts = searchQuery
     ? posts.filter(post =>
-        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        post.excerpt?.toLowerCase().includes(searchQuery.toLowerCase())
+        post.published &&
+        (post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+         post.excerpt?.toLowerCase().includes(searchQuery.toLowerCase()))
       )
-    : posts;
+    : posts.filter(post => post.published);
 
   return (
     <>

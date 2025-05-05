@@ -116,7 +116,10 @@ export default function BlogPage() {
               filteredPosts.map((post, index) => (
                 <PostCard
                   key={post.id}
-                  post={post}
+                  post={{
+                    ...post,
+                    user: post.author
+                  }}
                   delay={index * 0.05}
                 />
               ))

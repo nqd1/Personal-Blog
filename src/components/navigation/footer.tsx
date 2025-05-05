@@ -75,17 +75,23 @@ export function Footer() {
         </div>
 
         <MotionDiv variant="fadeInUp" delay={0.4} className="mt-12 pt-6 border-t text-sm text-muted-foreground flex flex-col md:flex-row justify-between gap-4">
-          <p>© {currentYear} NqdBlog. All rights reserved.</p>
+          <p>© {currentYear} Nqd Blog. All rights reserved.</p>
           <div className="flex gap-4">
-            <Link href="https://www.facebook.com/nqd1445" className="hover:text-primary transition-colors">
+            <Link href="https://www.facebook.com/nqd1445" 
+                  className="hover:text-primary transition-colors" 
+                  target="_blank">
               <FaFacebook style={{ fontSize: '1.5em' }} />
               <span className="sr-only">Facebook</span>
             </Link>
-            <Link href="https://github.com/nqd1" target="_blank" className="hover:text-primary transition-colors">
+            <Link href="https://github.com/nqd1" 
+                  className="hover:text-primary transition-colors" 
+                  target="_blank">
               <FaGithub style={{ fontSize: '1.5em' }} />
               <span className="sr-only">GitHub</span>
             </Link>
-            <Link href="#" className="hover:text-primary transition-colors">
+            <Link href="https://www.linkedin.com/in/qu%C3%BD-%C4%91%E1%BB%A9c-nguy%E1%BB%85n-95b617358/" 
+                  className="hover:text-primary transition-colors"
+                  target="_blank">
               <FaLinkedin style={{ fontSize: '1.5em' }} />
               <span className="sr-only">LinkedIn</span>
             </Link>
